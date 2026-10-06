@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias</title>
+</head>
+<body>
+    <h1>Categorias</h1>
+    <a href="{% url 'categoria_criar' %}">+ Nova Categoria</a>
+
+    <table border="1" style="margin-top: 15px; width: 100%;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in categorias %}
+            <tr>
+                <td>{{ cat.id }}</td>
+                <td>{{ cat.nome }}</td>
+                <td>
+                    <a href="{% url 'categoria_editar' cat.id %}">Editar</a> |
+                    <a href="{% url 'categoria_excluir' cat.id %}">Excluir</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhuma categoria cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

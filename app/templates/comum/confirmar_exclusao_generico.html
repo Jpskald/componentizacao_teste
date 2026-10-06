@@ -1,0 +1,26 @@
+{% extends 'comum/base.html' %}
+
+{% block conteudo %}
+    <div class="text-center py-5">
+        <div class="mb-4">
+            <!-- Ícone de Alerta usando Emoji ou SVG -->
+            <span style="font-size: 4rem;">⚠️</span>
+        </div>
+        
+        <h2 class="text-danger fw-bold mb-4">{{ titulo }}</h2>
+        
+        <p class="fs-5 text-dark">
+            Tem certeza de que deseja excluir permanentemente o item <br> 
+            <strong class="text-danger fs-4 mt-2 d-inline-block">"{{ item_nome }}"</strong>?
+        </p>
+        <p class="text-muted small mt-3">Esta ação é irreversível e os dados não poderão ser recuperados.</p>
+
+        <form method="post" class="mt-5">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url url_cancelar %}" class="btn btn-outline-secondary btn-lg px-5">Cancelar</a>
+                <button type="submit" class="btn btn-danger btn-lg px-5 shadow-sm">Sim, Excluir</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

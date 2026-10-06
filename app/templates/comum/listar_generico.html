@@ -1,0 +1,66 @@
+{% extends 'comum/base.html' %}
+
+{% block conteudo %}
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <h2 class="text-primary fw-bold mb-0">{{ titulo }}</h2>
+        
+        <div>
+            <!-- Botão Novo Padrão -->
+            {% if url_novo %}
+                <a href="{% url url_novo %}" class="btn btn-primary shadow-sm">+ Novo</a>
+            {% endif %}
+            
+            <!-- Botões Extras -->
+            {% if botoes_extras %}
+                {% for botao in botoes_extras %}
+                    <a href="{% url botao.url %}" class="btn btn-outline-primary shadow-sm ms-2">{{ botao.label }}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle border">
+            <thead class="table-dark">
+                <tr>
+                    {% for cabecalho in cabecalhos %}
+                        <th>{{ cabecalho }}</th>
+                    {% endfor %}
+                    
+                    {% if url_editar or url_excluir %}
+                        <th class="text-center" style="width: 150px;">Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for linha in linhas %}
+                <tr>
+                    {% for valor in linha.valores %}
+                        <td>{{ valor }}</td>
+                    {% endfor %}
+                    
+                    {% if url_editar or url_excluir %}
+                    <td class="text-center">
+                        <div class="btn-group" role="group">
+                            {% if url_editar %}
+                                <a href="{% url url_editar linha.id %}" class="btn btn-sm btn-warning text-dark fw-semibold">Editar</a>
+                            {% endif %}
+                            
+                            {% if url_excluir %}
+                                <a href="{% url url_excluir linha.id %}" class="btn btn-sm btn-danger fw-semibold ms-1">Excluir</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="100%" class="text-center text-muted py-5">
+                        <span class="fs-5">Nenhum registro encontrado nesta seção.</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

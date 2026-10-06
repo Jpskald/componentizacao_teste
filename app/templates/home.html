@@ -1,0 +1,29 @@
+{% extends 'comum/base.html' %}
+
+{% block conteudo %}
+<div class="text-center py-5">
+    <h1 class="display-5 fw-bold text-dark">Bem-vindo ao Sistema de Estoque</h1>
+    <p class="lead mb-4 text-muted">Escolha uma das opções abaixo para começar a gerenciar sua loja.</p>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-primary mb-3">
+                <div class="card-body py-4">
+                    <h5 class="card-title text-primary fw-bold">🛒 Movimentações</h5>
+                    <p class="card-text text-secondary mt-3">Registre compras e vendas para atualizar seu saldo financeiro e de estoque automaticamente.</p>
+                    <a href="{% url 'movimentacao_listar' %}" class="btn btn-primary mt-3 w-100">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-success mb-3">
+                <div class="card-body py-4">
+                    <h5 class="card-title text-success fw-bold">📦 Produtos</h5>
+                    <p class="card-text text-secondary mt-3">Visualize o saldo atual, o valor imobilizado e gerencie seu catálogo de produtos.</p>
+                    <a href="{% url 'produto_listar' %}" class="btn btn-success mt-3 w-100">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
